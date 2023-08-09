@@ -1,0 +1,50 @@
+.technologies {
+  max-width: 1140px;
+  margin: 0;
+  padding: 100px 150px 110px;
+}
+
+.technologies__title {
+  margin: 95px auto 25px;
+  text-align: center;
+  font-family: Inter;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px; /* 116% */
+  letter-spacing: -2px;
+}
+
+.technologies__text {
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.56px;
+}
+
+.technologies__cards {
+  margin: 0;
+  padding: 85px 10px 0 10px;
+  display: grid;
+  justify-content: center;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, 90px);
+  list-style-type: none;
+}
+
+.technologies__item {
+  padding: 20px 10px;
+  background-color: #303030;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.56px;
+  border-radius: 10px;
+}

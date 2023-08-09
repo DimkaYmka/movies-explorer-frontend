@@ -1,0 +1,133 @@
+.header {
+  /* margin: 0 auto; */
+  padding: 18px calc((100% - 1140px) / 2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0;
+  /* max-width: 1280px; */
+  background-color: #073042;
+}
+
+.header__logo {
+  margin: 18px 0;
+  width: 38px;
+  height: 38px;
+  background-image: url('../../images/logo.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.header__signup {
+  margin: 29px 30px 29px 0;
+  text-decoration: none;
+  color: #fff;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.header__signin {
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: none;
+  color: #000000;
+  width: 76px;
+  height: 32px;
+  background-color: #3DDC84;
+  border-radius: 3px;
+  text-align: center;
+  padding: 8px 20px;
+  box-sizing: border-box;
+}
+
+.header__overlay {
+  display: none;
+}
+
+.header__navpanel {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header {}
+
+  .header__link {}
+
+  .header__overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .3);
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+  }
+
+  .header__overlay_active {
+    opacity: 1;
+  }
+
+
+  .header__navpanel {
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 22px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+    z-index: 3;
+  }
+
+  .header__navpanel-inner {
+    height: 22px;
+    width: 22px;
+    position: absolute;
+    /* top: 9px;
+    right: 0; */
+    /* background-color: #fff; */
+    transition: transform .2s ease;
+    cursor: pointer;
+    background-image: url('../../images/icon__NavPanel.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+
+  .header__navpanel-inner_active {
+    transform: rotate(180deg);
+    background-image: url('../../images/close__navPanel.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+
+}
+
+@media screen and (max-width: 320px) {
+  .header__overlay {
+    display: block;
+  }
+
+  .header__overlay_active {
+    opacity: 1;
+  }
+
+  .header__navpanel {
+    display: block;
+  }
+}

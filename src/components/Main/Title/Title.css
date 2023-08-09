@@ -1,0 +1,13 @@
+.title {
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 23px;
+  text-align: left;
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  border-bottom: solid 1px #dadada;
+}
