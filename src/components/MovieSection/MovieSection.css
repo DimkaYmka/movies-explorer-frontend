@@ -28,7 +28,7 @@
   background: #313131;
   color: #fff;
   text-align: center;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -59,7 +59,7 @@
 .movie-section__title {
   margin: 0;
   color: #fff;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -73,7 +73,7 @@
 .movie-section__duration {
   margin: 0;
   color: #8b8b8b;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -81,10 +81,10 @@
   text-align: center;
 }
 
-.movies-section__more-button {
+.movie-section__more-button {
   color: #fff;
   text-align: center;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;

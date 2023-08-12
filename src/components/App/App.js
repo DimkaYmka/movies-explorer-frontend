@@ -24,7 +24,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="content">
+      {/* <div className="content"> */}
 
 
         <Routes>
@@ -59,7 +59,7 @@ function App() {
           <Route path="/404" element={<NotFound />} />
 
         </Routes>
-      </div>
+      {/* </div> */}
     </CurrentUserContext.Provider>
   );
 }

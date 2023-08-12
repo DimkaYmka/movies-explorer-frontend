@@ -4,10 +4,10 @@ import { loginSetting } from '../../constants/authSetting';
 
 function Login() {
   return (
-    <div className="login">
+    <main className="login">
       {/* <Header theme={{ default: true }}/> */}
       <Auth authSetting={loginSetting} />
-    </div>
+    </main>
   )
 }
 

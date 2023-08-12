@@ -4,10 +4,10 @@ import Auth from '../Auth/Auth';
 
 function Register() {
   return (
-    <div className="register">
+    <main className="register">
       {/* <Header theme={{ default: true }}/> */}
       <Auth authSetting={registerSetting}/>
-    </div>
+    </main>
   )
 }
 

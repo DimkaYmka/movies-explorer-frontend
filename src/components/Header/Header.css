@@ -29,7 +29,7 @@
   margin: 29px 30px 29px 0;
   text-decoration: none;
   color: #fff;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -37,7 +37,7 @@
 }
 
 .header__signin {
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -105,8 +105,8 @@
     height: 44px;
     width: 44px;
     position: absolute;
-    top: -11px;
-    right: 0;
+    top: -1px;
+right: -5px;
     /* background-color: #fff; */
     transition: transform 0.2s ease;
     cursor: pointer;
@@ -122,8 +122,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 17px;
-    height: 45px;
+    width: 26px;
+    height: 26px;
+    top: -1px;
   }
 }
 
@@ -160,5 +161,7 @@
 
   .header__navpanel {
     display: block;
+    width: 32px;
+    height: 32px;
   }
 }

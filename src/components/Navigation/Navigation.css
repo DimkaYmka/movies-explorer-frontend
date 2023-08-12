@@ -10,7 +10,7 @@
   color: #fff;
   transition: 0.2s ease-in;
   text-align: right;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -104,6 +104,14 @@
     display: block;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .navigation {
+    width: 80%;
+  }
+
+}
+
 
 @media screen and (max-width: 320px) {
   .navigation {

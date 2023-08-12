@@ -8,15 +8,17 @@ import Header from "../Header/Header.js";
 
 function Main() {
   return (
-    <main>
+    <div>
       <Header theme={{ default: false }}/>
+      <main>
       <Promo />
       <AboutProject/>
       <Technologies/>
       <AboutMe/>
       <Portfolio/>
+      </main>
       <Footer/>
-    </main>
+    </div>
   )
 }
 export default Main;

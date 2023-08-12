@@ -3,7 +3,7 @@ import MovieSection from '../MovieSection/MovieSection.js'
 
 function MoviesCardList  ({ moviesData }) {
   return (
-    <section className="movie-section">
+    <main className="movie-section">
       <ul className="movie-section__list">
         {
           moviesData.map(({ _id, ...movie}) => (
@@ -11,8 +11,8 @@ function MoviesCardList  ({ moviesData }) {
           ))
         }
       </ul>
-      <button className="movies-section__more-button"> Ещё </button>
-    </section>
+      <button className="movie-section__more-button"> Ещё </button>
+    </main>
   )
 };
 

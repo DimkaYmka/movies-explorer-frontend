@@ -14,7 +14,7 @@
 .project__title {
   /* width: 550px; */
   color: #fff;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -24,7 +24,7 @@
 
 .project__text {
   color: #fff;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -39,7 +39,7 @@
 }
 
 .project__progress-back {
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -54,7 +54,7 @@
 }
 
 .project__progress-front {
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -71,14 +71,14 @@
 .project__progress-text {
   color: #8b8b8b;
   text-align: center;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 17px; /* 121.429% */
 }
 
-.project__progress-text_back {
+.project__back-text {
   width: 228px;
   text-align: center;
   box-sizing: border-box;
@@ -86,7 +86,7 @@
   font-size: 14px;
 }
 
-.project__progress-text_front {
+.project__front-text {
   width: 912px;
   text-align: center;
   box-sizing: border-box;
@@ -96,7 +96,7 @@
 
 @media screen and (max-width: 768px) {
   .project {
-    padding: 90px 0px 106px;
+    padding: 90px 50px 106px;
     max-width: 668px;
     margin: 0 auto;
   }
@@ -122,9 +122,9 @@
     margin: 0;
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 500px) {
   .project {
-    padding: 69px 0px 106px;
+    padding: 69px 18px 106px;
     max-width: 285px;
   }
   .project__title {
@@ -171,14 +171,14 @@
     line-height: normal;
   }
 
-  .project__progress-text_back{
+  .project__back-text{
     font-size: 11px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   }
 
-  .project__progress-text_front {
+  .project__front-text {
     font-size: 11px;
     font-style: normal;
     font-weight: 400;

@@ -16,7 +16,7 @@ function Auth({ authSetting }) {
           <label className="auth__input-label">
             Имя
           </label>
-          <input className="auth__input" type="email"
+          <input className="auth__input-row" type="email"
             required />
         </div>
 
@@ -24,7 +24,7 @@ function Auth({ authSetting }) {
           <label className="auth__input-label">
             E-mail
           </label>
-          <input className="auth__input" type="password"
+          <input className="auth__input-row" type="password"
             required />
         </div>
 
@@ -35,13 +35,13 @@ function Auth({ authSetting }) {
             <label className="auth__input-label">
               Пароль
             </label>
-            <input className="auth__input" type="text"
+            <input className="auth__input-row" type="text"
               required />
           </div>
         }
       </form>
 
-      <div className="auth_submit">
+      <div className="auth__submit">
         <button className="auth__submit-button" type="submit">
           {authSetting.buttonSubmit}
         </button>

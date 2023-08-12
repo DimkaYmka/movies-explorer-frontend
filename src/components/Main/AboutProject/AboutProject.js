@@ -2,7 +2,7 @@ import Title from "../Title/Title";
 
 function AboutProject() {
   return (
-    <section className="project">
+    <section className="project" name='project'>
       <Title title="О проекте" />
       <div className="project__plan">
         <div className="project__part">
@@ -19,8 +19,8 @@ function AboutProject() {
         <p className="project__progress-front">4 недели</p>
       </div>
       <div className="project__progress">
-        <p className="project__progress-text_back">Back-end</p>
-        <p className="project__progress-text_front">Front-end</p>
+        <p className="project__back-text">Back-end</p>
+        <p className="project__front-text">Front-end</p>
       </div>
 
 

@@ -8,7 +8,7 @@ import { savedMoviesData } from '../../constants/savedMoviesData.js';
 function SavedMovies() {
 
   return (
-    <div className="layout">
+    <div className="saved-movies">
       <Header theme={{ default: false }}/>
       <Search />
       <MovieSectionList moviesData={savedMoviesData}/>

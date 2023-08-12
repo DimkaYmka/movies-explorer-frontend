@@ -6,7 +6,7 @@ export const moviesData = [
     duration: 10,
     year: '2021',
     description: 'Описание',
-    image: 'https://www.yaom.ru/wp-content/uploads/ganc-o-200x200.jpg',
+    image: 'https://img.championat.com/i/j/h/16330040731357642319.jpg',
     nameRU: 'Лолита',
     nameEN: 'Lolita',
     trailerLink: 'https://www.youtube.com/watch?v=1jHz-NJOOiU',
