@@ -11,9 +11,6 @@
   gap: 50px;
 }
 
-.project__part {
-}
-
 .project__title {
   /* width: 550px; */
   color: #fff;
@@ -72,7 +69,7 @@
 }
 
 .project__progress-text {
-  color: #8B8B8B;
+  color: #8b8b8b;
   text-align: center;
   font-family: Inter;
   font-size: 14px;
@@ -97,3 +94,95 @@
   font-size: 14px;
 }
 
+@media screen and (max-width: 768px) {
+  .project {
+    padding: 90px 0px 106px;
+    max-width: 668px;
+    margin: 0 auto;
+  }
+
+  .project__text {
+    padding-top: 0px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    max-width: 319px;
+  }
+
+  .project__progress {
+    padding: 3px 0px 10px 10px;
+  }
+
+  .project__progress-front {
+    margin: 0;
+  }
+
+  .project__progress-back {
+    margin: 0;
+  }
+}
+@media screen and (max-width: 320px) {
+  .project {
+    padding: 69px 0px 106px;
+    max-width: 285px;
+  }
+  .project__title {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.72px;
+  }
+
+  .project__plan {
+    padding-top: 46px;
+    gap: 40px;
+    flex-direction: column;
+    padding-bottom: 60px;
+  }
+
+  .project__text {
+    padding-bottom: 0;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+  }
+
+  .project__progress {
+    padding: 0;
+    padding-top: 3px;
+  }
+
+  .project__progress-front {
+    width: 818px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .project__progress-back {
+    width: 412px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .project__progress-text_back{
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .project__progress-text_front {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 420px;
+  }
+}

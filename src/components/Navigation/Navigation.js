@@ -22,12 +22,15 @@ function Navigation({ isOpenNavPanel }) {
             Сохраненные фильмы
           </Link>
         </li>
-        <li className='navigation__item navigation__profile' >
+        {/* <li className='navigation__item navigation__profile' >
           <Link to="/profile" className="navigation__link">
             Аккаунт
           </Link>
-        </li>
+        </li> */}
       </ul>
+      <Link to="/profile" className="navigation__item navigation__profile navigation__link">
+            Аккаунт
+          </Link>
 
     </div>
   )

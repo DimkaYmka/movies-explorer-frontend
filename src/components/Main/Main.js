@@ -4,17 +4,19 @@ import Technologies from "./Technologies/Technologies.js"
 import AboutMe from "./AboutMe/AboutMe.js";
 import Portfolio from "./Portfolio/Portfolio.js"
 import Footer from "../Footer/Footer.js";
+import Header from "../Header/Header.js";
 
 function Main() {
   return (
-    <div>
+    <main>
+      <Header theme={{ default: false }}/>
       <Promo />
       <AboutProject/>
       <Technologies/>
       <AboutMe/>
       <Portfolio/>
       <Footer/>
-    </div>
+    </main>
   )
 }
 export default Main;

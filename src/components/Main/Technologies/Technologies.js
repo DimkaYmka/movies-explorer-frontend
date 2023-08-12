@@ -5,7 +5,7 @@ function Technologies () {
     <section className="technologies">
        <Title title="Технологии" />
       <h2 className="technologies__title">7 технологий</h2>
-      <p className="technologies__text">На курсе веб-разработки мы освоили технологии, которые применили<br/>в дипломном проекте.</p>
+      <p className="technologies__text">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
       <ul className="technologies__cards">
         <li className="technologies__item">HTML</li>
         <li className="technologies__item">CSS</li>

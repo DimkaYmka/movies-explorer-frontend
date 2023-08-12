@@ -1,22 +1,20 @@
-
 import Header from '../Header/Header.js';
 import Search from '../Search/Search.js';
 import Footer from '../Footer/Footer.js'
 import MovieSectionList from '../MovieSectionList/MovieSectionList.js';
-import { moviesData } from '../../constants/moviesData.js';
+import { savedMoviesData } from '../../constants/savedMoviesData.js';
 
-function Movies() {
+
+function SavedMovies() {
 
   return (
-    <div className="movie__container">
+    <div className="layout">
       <Header theme={{ default: false }}/>
       <Search />
-      <MovieSectionList moviesData={moviesData}/>
-      {/* <MovieSection /> */}
-
+      <MovieSectionList moviesData={savedMoviesData}/>
       <Footer />
     </div>
   )
 }
 
-export default Movies;
+export default SavedMovies;
