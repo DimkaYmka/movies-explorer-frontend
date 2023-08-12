@@ -29,7 +29,7 @@
   margin: 29px 30px 29px 0;
   text-decoration: none;
   color: #fff;
-  font-family: 'Inter', 'Arial', sans-serif;
+  font-family: "Inter", "Arial", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -37,7 +37,7 @@
 }
 
 .header__signin {
-  font-family: 'Inter', 'Arial', sans-serif;
+  font-family: "Inter", "Arial", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -105,8 +105,8 @@
     height: 44px;
     width: 44px;
     position: absolute;
-    top: -1px;
-right: -5px;
+    top: -11px;
+    right: -5px;
     /* background-color: #fff; */
     transition: transform 0.2s ease;
     cursor: pointer;
@@ -148,7 +148,6 @@ right: -5px;
     font-weight: 500;
     line-height: 16px;
   }
-
 
   .header__overlay {
     display: block;

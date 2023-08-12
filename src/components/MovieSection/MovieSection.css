@@ -130,12 +130,12 @@
   }
 
   .movie-section {
-    max-width: 710px;
+    max-width: 345px;
     padding-bottom: 123px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 350px) {
 .movie-section {
   max-width: 300px;
   padding-bottom: 119px;
