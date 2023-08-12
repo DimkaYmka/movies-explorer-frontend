@@ -163,4 +163,8 @@
     width: 32px;
     height: 32px;
   }
+
+  .header__navpanel-inner {
+    top: -8px;
+  }
 }
