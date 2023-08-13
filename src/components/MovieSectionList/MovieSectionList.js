@@ -5,13 +5,18 @@ function MoviesCardList  ({ moviesData }) {
   return (
     <main className="movie-section">
       <ul className="movie-section__list">
-        {
+        {/* {
           moviesData.map(({ _id, ...movie}) => (
             <MovieSection key={_id} movieData={movie} />
           ))
+        } */}
+                {
+          moviesData.map(({ id, ...movie}) => (
+            <MovieSection key={id} movieData={movie} />
+          ))
         }
       </ul>
-      <button className="movie-section__more-button"> Ещё </button>
+      {/* <button className="movie-section__more-button"> Ещё </button> */}
     </main>
   )
 };
