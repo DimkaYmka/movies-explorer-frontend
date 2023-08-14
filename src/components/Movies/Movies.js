@@ -1,12 +1,12 @@
-
-import Header from '../Header/Header.js';
-import Search from '../Search/Search.js';
+import MovieSectionList from '../MovieSectionList/MovieSectionList';
+import Search from '../Search/Search';
+import Header from '../Header/Header.js'
 import Footer from '../Footer/Footer.js'
-import MovieSectionList from '../MovieSectionList/MovieSectionList.js';
+
 
 import { useEffect, useState } from 'react';
 
-import { moviesApi } from '../../utils/MoviesApi.js';
+import moviesApi from '../../utils/MoviesApi';
 
 // // Фильтрация фильмов
 // const checkMovieDuration = (movieDuration, isShortsIncluded, shortsDurationCriteria = 40) => {
@@ -37,26 +37,12 @@ const getAmountOfCards = () => {
   return { totalCards: 12, extraCards: 3 };
 }
 
-function Movies() {
-  // const [isLoadind, setIsLoading] = useState(false);
+const Movies = () => {
+
   const [allMovies, setAllMovies] = useState([]);
   const [moviesDisplayed, setMoviesDisplayed] = useState([]);
   const [amountOfCards, setAmountOfCards] = useState(getAmountOfCards());
   const [isButtonVisible, setIsButtonVisible] = useState(true);
-
-  // const handleResize = () => {
-  //   // console.log('resize', amountOfCards);
-  //   setAmountOfCards(getamountOfCards());
-  // }
-
-  // const debouncedResize = useDebouncedFunction(handleResize, 400);
-
-  // useEffect(() => {
-  //   window.addEventListener('resize', debouncedResize);
-
-  //   return () => window.removeEventListener('resize', debouncedResize);
-  // }, [debouncedResize]);
-
 
   useEffect(() => {
     const movieStorage = JSON.parse(localStorage.getItem('movies'));
@@ -64,8 +50,6 @@ function Movies() {
       setAllMovies(movieStorage)
       return;
     }
-
-    // setIsLoading(true);
     moviesApi.getMovies()
       .then(movies => {
         setAllMovies(movies);
@@ -74,14 +58,12 @@ function Movies() {
       .catch(err => {
         console.error(err);
       })
-    // .finally(() => {
-    //   setIsLoading(false);
-    // })
   }, [])
 
   useEffect(() => {
     setMoviesDisplayed(allMovies.slice(0, amountOfCards.totalCards));
   }, [amountOfCards, allMovies])
+
 
   useEffect(() => {
     setIsButtonVisible(moviesDisplayed.length < allMovies.length);
@@ -92,18 +74,15 @@ function Movies() {
     setMoviesDisplayed([...moviesDisplayed, ...moviesToShow]);
   }
 
-
-
-
   return (
-    <div className="movie__container">
-      <Header theme={{ default: false }} />
-      <Search
-      // parameters={parameters}
+    <main className="movies container">
+      <Header theme={{ default: false }}/>
+        <Search
+              // parameters={parameters}
       //    handleSubmit={handleSubmit}
-          />
-      <MovieSectionList moviesData={moviesDisplayed} />
-      {isButtonVisible
+        />
+        <MovieSectionList moviesData={moviesDisplayed} />
+        {isButtonVisible
         ?
         <button className="movie-section__more-button"
           type="button" onClick={handleMoreMovies}>
@@ -111,9 +90,12 @@ function Movies() {
         </button>
         : null
       }
-      <Footer />
-    </div>
+        <Footer />
+    </main>
   )
-}
+};
 
 export default Movies;
+
+
+
