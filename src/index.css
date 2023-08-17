@@ -30,3 +30,6 @@
 @import url('./components/Auth/Auth.css');
 @import url('./components/Register/Register.css');
 @import url('./components/Login/Login.css');
+
+@import url('./components/InfoToolTip/InfoToolTip.css');
+@import url('./components/Preloader/Preloader.css');
