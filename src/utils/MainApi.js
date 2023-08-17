@@ -1,6 +1,6 @@
 const apiOptions = {
-  baseUrl: 'http://localhost:3002',
-  // baseUrl: 'https://api.d1mkaymka.nomoredomains.xyz',
+  // baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://api.d1mkaymka.nomoredomains.xyz',
   headers: {
     'Content-Type': 'application/json'
   }
