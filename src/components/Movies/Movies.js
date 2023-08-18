@@ -40,6 +40,9 @@ const getAmountOfCards = () => {
 const Movies = ({ loggedIn }) => {
 
   const [allMovies, setAllMovies] = useState([]);
+
+  const [prevSearchResults, setPrevSearchResults] = useState([]);
+
   const [moviesDisplayed, setMoviesDisplayed] = useState([]);
   const [amountOfCards, setAmountOfCards] = useState(getAmountOfCards());
   const [isButtonVisible, setIsButtonVisible] = useState(true);
@@ -49,6 +52,14 @@ const Movies = ({ loggedIn }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
+
+  useEffect(() => {
+    const search = JSON.parse(localStorage.getItem('search'));
+    if (search) setParameters(search);
+
+    const prevResults = JSON.parse(localStorage.getItem('prevSearchResults'));
+    if (prevResults) setSearchedMovies(prevResults);
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -107,15 +118,32 @@ const Movies = ({ loggedIn }) => {
     setMoviesDisplayed([...moviesDisplayed, ...moviesToShow]);
   }
 
+  // const handleSearchSubmit = (e) => {
+  //   e.preventDefault();
+  //   const { request, short } = e.target.elements;
+  //   console.log(request.value, short.checked);
+
+  //   const currentSearch = { querry: request.value, includeShorts: short.checked };
+
+  //   localStorage.setItem('search', JSON.stringify(currentSearch));
+  //   setParameters(currentSearch);
+  //   setIsNotFound(false);
+  // }
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     const { request, short } = e.target.elements;
-    console.log(request.value, short.checked);
 
-    const currentSearch = { querry: request.value, includeShorts: short.checked };
+    const currentSearch = {
+      querry: request.value,
+      includeShorts: short.checked,
+    };
 
     localStorage.setItem('search', JSON.stringify(currentSearch));
+    localStorage.setItem('prevSearchResults', JSON.stringify(serachedMovies));
+
     setParameters(currentSearch);
+    setPrevSearchResults(serachedMovies);
     setIsNotFound(false);
   }
 

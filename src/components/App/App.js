@@ -123,6 +123,7 @@ function App() {
     localStorage.removeItem('token');
     localStorage.removeItem('movies');
     localStorage.removeItem('search');
+    localStorage.removeItem('prevSearchResults')
     navigation('/');
   };
 
