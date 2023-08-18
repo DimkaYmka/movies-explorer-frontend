@@ -1,35 +1,6 @@
-// import Auth from '../Auth/Auth';
-// import { loginSetting } from '../../constants/authSetting';
-// // import Header from '../Header/Header.js';
-// import api from '../../utils/MainApi.js';
-
-// function Login({ setLoggedIn, navigate }) {
-//   const handleRegistrationUser = (userData) => {
-//     api.authorization(userData)
-//       .then(data => {
-//         if (data._id) {
-//           localStorage.setItem('userId', data._id);
-//           setLoggedIn(oldState => ({ ...oldState, loggeIn: true }));
-//           navigate('/');
-//         }
-//       })
-//       .catch((err) => console.log(err));
-//   }
-//   return (
-//     <main className="login">
-//       {/* <Header theme={{ default: true }}/> */}
-//       <Auth authSetting={loginSetting}
-//       handleSubmit={handleRegistrationUser} />
-//     </main>
-//   )
-// }
-
-// export default Login;
-
 import React, { useEffect } from 'react';
 import Auth from '../Auth/Auth';
 import useValidation from '../../hooks/useValidationHook';
-// import { EMAIL_REGEX } from '../../utils/constants';
 import { useNavigate } from 'react-router-dom';
 const Login =  ({ onAuthorize, isLoading, loggedIn }) => {
   const { values, errors, handleChange, isValid } = useValidation();
@@ -47,7 +18,6 @@ const Login =  ({ onAuthorize, isLoading, loggedIn }) => {
         if (loggedIn) {
             navigate('/movies');
         }
-        // eslint-disable-next-line
     }, [loggedIn]);
 
     return(
@@ -74,7 +44,6 @@ const Login =  ({ onAuthorize, isLoading, loggedIn }) => {
                 maxLength="40"
                 required={true}
                 onChange={handleChange}
-                // pattern={EMAIL_REGEX}
                 value={values.email || ''}
             />
             <span className='auth-form__span-error'>{errors.email}</span>
@@ -100,4 +69,3 @@ const Login =  ({ onAuthorize, isLoading, loggedIn }) => {
 
 export default Login
 
-// DONE

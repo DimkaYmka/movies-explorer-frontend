@@ -6,10 +6,7 @@ import Header from '../Header/Header.js'
 
 
 function Profile({ logOut, onUpdateInfo, loggedIn, isLoading }) {
-
-  // const { name, email } = useContext(CurrentUserContext);
   const currentUser = useContext(CurrentUserContext);
-
   const { values, errors, handleChange, isValid, resetForm } = useValidation();
   const [isLastEnter, setIsLastEnter] = useState(false);
 
@@ -33,14 +30,7 @@ useEffect(() => {
   } else {
     setIsLastEnter(false);
   }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [values]);
-
-  // function handleEdit() {
-  //   console.log('done');
-  // }
-
 
   return (
     <div className="">

@@ -40,5 +40,5 @@
   top: calc(50% - 40px);
   left: calc(50% - 40px);
   transition: 1s linear;
-  animation: up-down 1s infinite; /* Название анимации up-down */
+  animation: up-down 1s infinite;
 }

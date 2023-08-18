@@ -1,4 +1,3 @@
-// import Film1 from '../../images/films/1.jpg'
 import { useLocation } from 'react-router-dom';
 import { convertMinutes } from '../../utils/utils';
 import { useEffect, useState } from 'react';
@@ -37,23 +36,6 @@ function MovieSection({ movieData }) {
     setIsMovieSaved(savedMovies.some(movie => movie.movieId === movieData.id || movie.movieId === movieData.movieId));
   }, [savedMovies, movieData])
 
-  // function deleteMovie() {
-
-  //   const deleteParam = pathname === '/movies'
-  //     ? movieData.id
-  //     : movieData.movieId;
-  //   const movieToDelete = savedMovies.find(movie => movie.movieId === deleteParam);
-
-  //   api.deleteSavedMovie(movieToDelete._id)
-  //     .then(movieData => {
-  //       setSavedMovies(savedMovies.filter(movie => movie._id !== movieData._id));
-  //       setIsDeleted(true);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
-
   function deleteMovie() {
     const deleteParam = pathname === '/movies'
       ? movieData.id
@@ -91,14 +73,9 @@ function MovieSection({ movieData }) {
       image: `${moviesUrl}${movieData.image.url}`,
       thumbnail: `${moviesUrl}${movieData.image.formats.thumbnail.url}`,
     };
-
     delete savingMovieInfo.id;
     delete savingMovieInfo.created_at;
     delete savingMovieInfo.updated_at;
-
-    console.log('Movie data: ', movieData);
-    console.log('Movie saved: ', savingMovieInfo);
-
     api.NewSavedMovie(savingMovieInfo)
       .then(movie => {
         setSavedMovies([...savedMovies, movie]);
@@ -111,7 +88,7 @@ function MovieSection({ movieData }) {
 
 
   if (isDeleted && pathname === "/saved-movies") {
-    return null; // не отображаем удаленный фильм
+    return null;
   }
 
   return (
@@ -127,9 +104,6 @@ function MovieSection({ movieData }) {
               : movieData.image}
           alt={movieData.nameRU} />
       </a>
-      {/* <button onClick={pathname === "/movies" ? saveMovie : deleteMovie}
-        className="movie-section__button " type="button">{pathname === "/movies" ? 'Сохранить' : 'X'}
-      </button> */}
       <MovieButton
         onClickHandler={isMovieSaved ? deleteMovie : saveMovie}
         typeClass={isMovieSaved && pathname === "/movies"} >

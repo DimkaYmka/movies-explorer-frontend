@@ -17,11 +17,6 @@ import InfoTooltip from "../InfoToolTip/InfoToolTip.js";
 
 
 function App() {
-  // const [currentUser, setCurrentUser] = useState({
-  //   name: 'Dima',
-  //   email: 'asd@mail.ru',
-  //   loggedIn: true
-  // });
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname;
@@ -41,7 +36,7 @@ function App() {
         .getContent(jwt)
         .then((res) => {
           if (res) {
-            localStorage.removeItem('allMovies'); //TODO del?
+            localStorage.removeItem('allMovies');
             setloggedIn(true);
           }
           navigation(path);
@@ -78,7 +73,6 @@ function App() {
     api.register(name, email, password)
       .then(() => {
         handleLogin({ email, password });
-        // navigate("/signin");
       })
       .catch((err) => {
         setIsSuccess(false);
@@ -129,8 +123,6 @@ function App() {
     localStorage.removeItem('token');
     localStorage.removeItem('movies');
     localStorage.removeItem('search');
-    // localStorage.removeItem('shortMovies');
-    // localStorage.removeItem('allMovies');
     navigation('/');
   };
 
@@ -142,7 +134,6 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      {/* <div className="content"> */}
       <SavedMoviesContextProvider value={savedMovies}
         context={{ savedMovies, setSavedMovies }}
       >
@@ -165,17 +156,13 @@ function App() {
                 element={Movies}
                 loggedIn={loggedIn} />
             } />
-
           <Route
             path='/saved-movies'
             element={
               <ProtectedRoute
                 element={SavedMovies}
-                loggedIn={loggedIn}
-              />
-            }
-          />
-
+                loggedIn={loggedIn} />
+            }  />
           <Route
             path='/signin'
             element={!loggedIn
@@ -183,9 +170,7 @@ function App() {
               <Login onAuthorize={handleLogin} isLoading={isLoading}/>
               :
               <Navigate to='/movies' />
-            }
-          />
-
+            } />
           <Route
             path='/signup'
             element={!loggedIn
@@ -193,11 +178,7 @@ function App() {
               <Register onRegister={handleRegister} isLoading={isLoading}/>
               :
               <Navigate to='/movies' />
-            }
-          />
-
-
-
+            }  />
           <Route
             path='/profile'
             element={(
@@ -214,9 +195,10 @@ function App() {
           <Route path="/404" element={<NotFound />} />
 
         </Routes>
+
         <InfoTooltip isSuccess={isSuccess} onClose={closePopup} />
         <InfoTooltip isSuccess={!isUpdate} isUpdate={isUpdate} onClose={closePopup} />
-        {/* </div> */}
+
       </SavedMoviesContextProvider>
     </CurrentUserContext.Provider>
   );

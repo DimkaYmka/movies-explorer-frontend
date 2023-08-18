@@ -1,7 +1,6 @@
 .movie-section {
   max-width: 1140px;
   margin: 0 auto;
-  /* padding-bottom: 85px; */
 }
 
 .movie-section__list {
@@ -63,7 +62,7 @@
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
-  line-height: 18px; /* 120% */
+  line-height: 18px;
   width: 240px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -77,7 +76,7 @@
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px; /* 138.462% */
+  line-height: 18px;
   text-align: center;
 }
 

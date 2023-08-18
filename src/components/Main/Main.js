@@ -9,7 +9,6 @@ import Header from "../Header/Header.js";
 function Main({loggedIn}) {
   return (
     <div>
-      {/* <Header loggedIn={loggedIn} theme={{ default: false }}/> */}
       <main>
       <Promo />
       <AboutProject/>
