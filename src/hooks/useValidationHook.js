@@ -15,9 +15,6 @@ const useValidation = () => {
     setCurrentInputName(name);
   };
 
-
-
-
   const resetForm = useCallback(
     (newValues = {}, newErrors = {}, newIsValid = false) => {
       setValues(newValues);

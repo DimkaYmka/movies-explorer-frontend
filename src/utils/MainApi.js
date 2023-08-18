@@ -1,15 +1,9 @@
 const apiOptions = {
-  // baseUrl: 'http://localhost:3000',
   baseUrl: 'https://api.d1mkaymka.nomoredomains.xyz',
   headers: {
     'Content-Type': 'application/json'
   }
 };
-
-
-const getJWTByLocalStorage = () => {
-  return localStorage.getItem('jwt')
-}
 
 class Api {
   constructor(options) {
@@ -25,7 +19,6 @@ class Api {
   }
 
   getUserData() {
-    // const token = getJWTByLocalStorage()
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       credentials: 'include',
@@ -33,15 +26,11 @@ class Api {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       }
-      // headers: this._headers,
     })
       .then(this._getResponse)
   }
 
-
-  //
   editUserData(data) {
-    // const token = getJWTByLocalStorage()
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       credentials: 'include',
@@ -50,16 +39,14 @@ class Api {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       },
-      // body: JSON.stringify(userInfo)
       body: JSON.stringify({
-        //тело запроса
         name: data.name,
         email: data.email,
     }),
     })
       .then(this._getResponse)
   }
-  //
+
 
 
 
@@ -89,7 +76,6 @@ class Api {
   };
 
   deleteSavedMovie(movieId) {
-    // const token = getJWTByLocalStorage()
     return fetch(`${this._baseUrl}/movies/${movieId}`, {
       method: 'DELETE',
       credentials: 'include',
@@ -131,22 +117,15 @@ class Api {
   getContent (token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
-      // credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${localStorage.getItem('token')}`
         Authorization: `Bearer ${token}`,
       }
     })
       .then(this._getResponse);
   };
-
-
 }
-
-
-
 
 const api = new Api(apiOptions)
 
