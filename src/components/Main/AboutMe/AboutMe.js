@@ -1,5 +1,5 @@
 import Title from "../Title/Title";
-import Student from "../../../images/student.JPG"
+import Student from "../../../images/me.jpg"
 
 function AboutMe() {
   return (
