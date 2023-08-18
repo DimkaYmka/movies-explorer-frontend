@@ -29,15 +29,6 @@ function SavedMovies({loggedIn}) {
   const [isNotFound, setIsNotFound] = useState(false);
 
   useEffect(() => {
-    const search = JSON.parse(localStorage.getItem('search'));
-    if (search) setParameters(search);
-
-    const prevResults = JSON.parse(localStorage.getItem('prevSearchResults'));
-    if (prevResults) setSavedMovies(prevResults);
-  }, []);
-
-
-  useEffect(() => {
   setIsLoading(true);
     api.getSavedMovies()
       .then(res => {
@@ -62,23 +53,6 @@ function SavedMovies({loggedIn}) {
     setParameters(currentSearch);
     setIsNotFound(false);
   }
-
-  // const handleSearchSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { request, short } = e.target.elements;
-
-  //   const currentSearch = {
-  //     querry: request.value,
-  //     includeShorts: short.checked,
-  //   };
-
-  //   localStorage.setItem('search', JSON.stringify(currentSearch));
-  //   localStorage.setItem('prevSearchResults', JSON.stringify(savedMovies));
-
-  //   setParameters(currentSearch);
-  //   setPrevSearchResults(savedMovies);
-  //   setIsNotFound(false);
-  // }
 
   useEffect(() => {
     const currentSearchedMovies = savedMovies.filter(movie => movieFilter(movie, parameters));
