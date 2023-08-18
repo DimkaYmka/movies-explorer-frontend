@@ -57,7 +57,7 @@ const Register = ({ onRegister, isLoading }) => {
           minLength="6"
           required
           onChange={handleChange}
-          pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+          pattern="^[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}$"
           value={values.password || ''}/>
         <span className='auth-form__span-error'>{errors.password}</span>
       </label>

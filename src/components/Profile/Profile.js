@@ -67,7 +67,7 @@ useEffect(() => {
               required
               type="email"
               name="email"
-              pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+              pattern="^[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}$"
               className="profile__input"
               placeholder="почтa"
               value={values.email || ''}
