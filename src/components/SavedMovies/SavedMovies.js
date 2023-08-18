@@ -21,7 +21,7 @@ export const movieFilter = (movie, { querry, includeShorts }) => {
 }
 
 function SavedMovies({loggedIn}) {
-  const [prevSearchResults, setPrevSearchResults] = useState([]);
+  // const [prevSearchResults, setPrevSearchResults] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [searchedSavedMovies, setSearchedSavedMovies] = useState([]);
   const [parameters, setParameters] = useState({ querry: '', includeShorts: false });
@@ -54,31 +54,31 @@ function SavedMovies({loggedIn}) {
 
 
 
-  // const handleSearchSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { request, short } = e.target.elements;
-  //   console.log(request.value, short.checked);
-  //   const currentSearch = { querry: request.value, includeShorts: short.checked };
-  //   setParameters(currentSearch);
-  //   setIsNotFound(false);
-  // }
-
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     const { request, short } = e.target.elements;
-
-    const currentSearch = {
-      querry: request.value,
-      includeShorts: short.checked,
-    };
-
-    localStorage.setItem('search', JSON.stringify(currentSearch));
-    localStorage.setItem('prevSearchResults', JSON.stringify(savedMovies));
-
+    console.log(request.value, short.checked);
+    const currentSearch = { querry: request.value, includeShorts: short.checked };
     setParameters(currentSearch);
-    setPrevSearchResults(savedMovies);
     setIsNotFound(false);
   }
+
+  // const handleSearchSubmit = (e) => {
+  //   e.preventDefault();
+  //   const { request, short } = e.target.elements;
+
+  //   const currentSearch = {
+  //     querry: request.value,
+  //     includeShorts: short.checked,
+  //   };
+
+  //   localStorage.setItem('search', JSON.stringify(currentSearch));
+  //   localStorage.setItem('prevSearchResults', JSON.stringify(savedMovies));
+
+  //   setParameters(currentSearch);
+  //   setPrevSearchResults(savedMovies);
+  //   setIsNotFound(false);
+  // }
 
   useEffect(() => {
     const currentSearchedMovies = savedMovies.filter(movie => movieFilter(movie, parameters));
