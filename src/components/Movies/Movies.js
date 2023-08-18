@@ -18,8 +18,13 @@ const filterMovieByQuerry = (movie, searchQuerry) => {
   return movie.nameRU.toLowerCase().includes(lowerQuerry);
 }
 
+// export const movieFilter = (movie, { querry, includeShorts }) => {
+//   return checkMovieDuration(movie.duration, includeShorts) && filterMovieByQuerry(movie, querry);
+// }
+
 export const movieFilter = (movie, { querry, includeShorts }) => {
-  return checkMovieDuration(movie.duration, includeShorts) && filterMovieByQuerry(movie, querry);
+  return (includeShorts && (movie.duration <= 40) && filterMovieByQuerry(movie, querry)) ||
+         (!includeShorts && filterMovieByQuerry(movie, querry));
 }
 
 const getAmountOfCards = () => {

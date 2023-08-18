@@ -5,6 +5,7 @@ import SearchShort from './searchShort/SearchShort';
 function Search({ parameters, setParameters, handleSearchSubmit }) {
   const [searchValue, setSearchValue] = useState(parameters.querry);
   const [isShortChecked, setShortChecked] = useState(parameters.includeShorts);
+  const [prevSearchResults, setPrevSearchResults] = useState([]);
 
   const handleChange = ({ target }) => {
     setSearchValue(target.value);

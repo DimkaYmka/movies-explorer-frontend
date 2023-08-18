@@ -16,7 +16,8 @@ const filterMovieByQuerry = (movie, searchQuerry) => {
 }
 
 export const movieFilter = (movie, { querry, includeShorts }) => {
-  return checkMovieDuration(movie.duration, includeShorts) && filterMovieByQuerry(movie, querry);
+  return (includeShorts && (movie.duration <= 40) && filterMovieByQuerry(movie, querry)) ||
+         (!includeShorts && filterMovieByQuerry(movie, querry));
 }
 
 function SavedMovies({loggedIn}) {
