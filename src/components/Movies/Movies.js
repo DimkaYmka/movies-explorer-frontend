@@ -103,9 +103,20 @@ const Movies = ({ loggedIn }) => {
       })
   }, [])
 
+
+  // useEffect(() => {
+  //   setMoviesDisplayed(serachedMovies.slice(0, amountOfCards.totalCards));
+  // }, [amountOfCards, serachedMovies])
+
   useEffect(() => {
-    setMoviesDisplayed(serachedMovies.slice(0, amountOfCards.totalCards));
-  }, [amountOfCards, serachedMovies])
+    if (localStorage.getItem('search')) {
+      setMoviesDisplayed(serachedMovies.slice(0, amountOfCards.totalCards));
+
+    }  else {
+      setMoviesDisplayed(allMovies.slice(0, amountOfCards.totalCards));
+
+    }
+  }, [ amountOfCards, serachedMovies, allMovies]);
 
 
   useEffect(() => {
@@ -148,8 +159,10 @@ const Movies = ({ loggedIn }) => {
   }, [parameters, allMovies])
 
   return (
-    <main className="movies container">
+    <div>
       <Header loggedIn={loggedIn} theme={{ default: false }} />
+    <main className="movies container">
+
       <Search
         parameters={parameters}
         handleSearchSubmit={handleSearchSubmit}
@@ -167,8 +180,10 @@ const Movies = ({ loggedIn }) => {
         </button>
         : null
       }
-      <Footer />
+
     </main>
+    <Footer />
+    </div>
   )
 };
 

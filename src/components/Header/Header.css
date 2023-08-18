@@ -69,6 +69,10 @@
 }
 
 @media screen and (max-width: 768px) {
+.header {
+
+}
+
   .header__logo {
     margin: 0;
   }
@@ -133,6 +137,11 @@
     padding: 18px 14px;
   }
 
+  .header__logo {
+    width: 33px;
+    height: 33px;
+  }
+
   .header__signin {
     padding: 6px 13px;
     font-size: 10px;
@@ -166,5 +175,7 @@
 
   .header__navpanel-inner {
     top: -8px;
+    height: 37px;
+    width: 37px;
   }
 }

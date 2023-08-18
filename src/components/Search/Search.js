@@ -22,7 +22,7 @@ function Search({ parameters, setParameters, handleSearchSubmit }) {
 
   return (
     <section className="movies">
-      <section className="movies__section">
+      <section className="search__section">
         <form className="search" onSubmit={handleSearchSubmit}>
           <fieldset className="search__fieldset">
             <input type="text"

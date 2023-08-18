@@ -32,8 +32,8 @@
 //       <form className="auth__form" onSubmit={onSubmit}>
 //         {authSetting.type === 'register'
 //           &&
-//           <div
-//             className="auth__input">
+          // <div
+          //   className="auth__input">
 //             <label className="auth__input-label">
 //               Имя
 //             </label>
@@ -112,6 +112,7 @@ function Auth ({
                   isLoading})  {
     return(
         <div className={'auth'}>
+          <div className="auth__forma">
             <Link to={'/'} className='auth__logo'>
                 <img src={logo} alt={'Логотип проекта'}/>
             </Link>
@@ -128,6 +129,7 @@ function Auth ({
                     {linkText}
                 </Link>
             </p>
+            </div>
         </div>
     )
 }

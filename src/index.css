@@ -20,6 +20,7 @@
 
 @import url("./components/Movies/Movie.css");
 @import url('./components/Search/Search.css');
+@import url('./components/SearchErr/SearchErr.css');
 @import url("./components/MovieSection/MovieSection.css");
 @import url('./components/MovieSectionList/MovieSectionList.css');
 

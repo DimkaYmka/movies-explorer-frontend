@@ -61,6 +61,7 @@ const Login =  ({ onAuthorize, isLoading, loggedIn }) => {
             isDisabled={!isValid}
             isLoading={isLoading}
         >
+
         <label className='auth__input-label'>
             E-mail
             <input

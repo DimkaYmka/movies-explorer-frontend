@@ -20,7 +20,7 @@
 .profile__form {
   width: 410px;
   display: flex;
-  gap: 16px;
+  gap: 3px;
   flex-direction: column;
   margin: 0 auto;
 
@@ -59,7 +59,7 @@
 }
 
 .profile__edit {
-   padding-top: 215px;
+  padding-top: 199px;
   display: flex;
   flex-direction: column;
 }
@@ -118,7 +118,11 @@
   }
 
   .profile__edit {
-    padding-top: 207px;
+    padding-top: 187px;
+  }
+
+  .profile__form {
+    gap: 4px;
   }
 }
 
@@ -150,6 +154,6 @@
   }
 
   .profile__edit {
-    padding-top: 374px;
+    padding-top: 362px;
   }
 }

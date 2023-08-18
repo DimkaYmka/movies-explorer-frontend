@@ -1,6 +1,6 @@
 .about-me {
-  /* max-width: 1140px; */
-  margin: 0;
+  max-width: 1140px;
+  margin: 0 auto;
   padding: 100px 150px 100px;
   background-color: #202020;
 }
@@ -62,7 +62,13 @@
   line-height: 22px; /* 157.143% */
   margin: 28px auto 100px;
 }
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 1200px) {
+  .about-me {
+    padding: 110px 15px 106px;
+  }}
+
+@media screen and (max-width: 1000px) {
   .about-me {
     padding: 115px 50px 90px;
   }
