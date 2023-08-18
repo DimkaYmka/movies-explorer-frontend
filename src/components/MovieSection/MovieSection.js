@@ -6,17 +6,12 @@ import api from '../../utils/MainApi';
 import MovieButton from '../MovieButton/MovieButton'
 
 const checkMovieDuration = (movieDuration, isShortsIncluded, shortsDurationCriteria = 40) => {
-  return isShortsIncluded || (movieDuration > shortsDurationCriteria);
+  return (isShortsIncluded && (movieDuration <= shortsDurationCriteria)) || (!isShortsIncluded && (movieDuration > shortsDurationCriteria));
 }
 
 const filterMovieByQuerry = (movie, searchQuerry) => {
   const lowerQuerry = searchQuerry.toLowerCase();
-
-  const isNameRuMatches = movie.nameRU.toLowerCase().includes(lowerQuerry);
-  const isNameEnMatches = movie.nameEN.toLowerCase().includes(lowerQuerry);
-  const isDescriptionMatches = movie.description.toLowerCase().includes(lowerQuerry);
-
-  return isNameRuMatches || isNameEnMatches || isDescriptionMatches;
+  return movie.nameRU.toLowerCase().includes(lowerQuerry);
 }
 
 export const movieFilter = (movie, { querry, includeShorts }) => {
@@ -99,9 +94,9 @@ function MovieSection({ movieData }) {
       </div>
       <a href={movieData.trailerLink} className="movie-section__link">
         <img className="movie-section__image"
-          src={ pathname === "/movies"
-              ? `${moviesUrl}/${movieData.image.url}`
-              : movieData.image}
+          src={pathname === "/movies"
+            ? `${moviesUrl}/${movieData.image.url}`
+            : movieData.image}
           alt={movieData.nameRU} />
       </a>
       <MovieButton
@@ -109,8 +104,6 @@ function MovieSection({ movieData }) {
         typeClass={isMovieSaved && pathname === "/movies"} >
         {pathname === "/movies" ? 'Сохранить' : 'X'}
       </MovieButton>
-
-
     </li>
 
   )

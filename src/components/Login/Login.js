@@ -45,6 +45,7 @@ const Login =  ({ onAuthorize, isLoading, loggedIn }) => {
                 required={true}
                 onChange={handleChange}
                 value={values.email || ''}
+                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
             />
             <span className='auth-form__span-error'>{errors.email}</span>
         </label>
