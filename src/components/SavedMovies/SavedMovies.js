@@ -17,10 +17,10 @@ const filterMovieByQuerry = (movie, searchQuerry) => {
 
 export const movieFilter = (movie, { querry, includeShorts }) => {
   return (includeShorts && (movie.duration <= 40) && filterMovieByQuerry(movie, querry)) ||
-         (!includeShorts && filterMovieByQuerry(movie, querry));
+    (!includeShorts && filterMovieByQuerry(movie, querry));
 }
 
-function SavedMovies({loggedIn}) {
+function SavedMovies({ loggedIn }) {
   // const [prevSearchResults, setPrevSearchResults] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [searchedSavedMovies, setSearchedSavedMovies] = useState([]);
@@ -29,7 +29,7 @@ function SavedMovies({loggedIn}) {
   const [isNotFound, setIsNotFound] = useState(false);
 
   useEffect(() => {
-  setIsLoading(true);
+    setIsLoading(true);
     api.getSavedMovies()
       .then(res => {
         console.log(res);
@@ -45,39 +45,33 @@ function SavedMovies({loggedIn}) {
 
 
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    const { request, short } = e.target.elements;
-    console.log(request.value, short.checked);
-    const currentSearch = { querry: request.value, includeShorts: short.checked };
+  const handleSearchSubmit = (searchValue, includeShorts) => {
+    const currentSearch = { querry: searchValue, includeShorts: includeShorts };
     setParameters(currentSearch);
     setIsNotFound(false);
   }
 
   useEffect(() => {
-    const currentSearchedMovies = savedMovies.filter(movie => movieFilter(movie, parameters));
+    const currentSearchedMovies = savedMovies.filter(movie => movieFilter(movie, parameters)); // Используйте параметры
     if (currentSearchedMovies.length === 0) {
       setIsNotFound(true);
-  } else {
+    } else {
       setIsNotFound(false);
       setSearchedSavedMovies(currentSearchedMovies);
-  }
-    console.log('currentSearchedMovies: ', currentSearchedMovies);
-    setSearchedSavedMovies(currentSearchedMovies);
+    }
   }, [parameters, savedMovies])
-
 
 
   return (
     <div className="saved-movies">
       <Header loggedIn={loggedIn} theme={{ default: false }} />
       <Search parameters={parameters}
-         handleSearchSubmit={handleSearchSubmit}
+         onSearchSubmit={handleSearchSubmit}
         setParameters={setParameters} />
       <MovieSectionList
-      moviesData={searchedSavedMovies}
-      isLoading={isLoading}
-      isNotFound={isNotFound}  />
+        moviesData={searchedSavedMovies}
+        isLoading={isLoading}
+        isNotFound={isNotFound}  />
       <Footer />
     </div>
   )
