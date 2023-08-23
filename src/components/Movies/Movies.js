@@ -69,7 +69,7 @@ const Movies = ({ loggedIn }) => {
     localStorage.setItem('includeShorts', JSON.stringify(newIncludeShorts));
   }
 
-  const handleSearchSubmit = (searchValue, includeShorts) => { // Принимаем параметр includeShorts
+  const handleSearchSubmit = (searchValue, includeShorts) => {
     const currentSearch = {
       querry: searchValue,
       includeShorts: includeShorts,
@@ -77,9 +77,10 @@ const Movies = ({ loggedIn }) => {
 
     localStorage.setItem('search', JSON.stringify(currentSearch));
     setParameters(currentSearch);
-    setPrevSearchResults(serachedMovies);
-    setIsNotFound(false);
+    setSearchedMovies([]); // Обнуляем предыдущие результаты
+    setIsNotFound(false); // Сбрасываем состояние "ничего не найдено"
   }
+
 
   useEffect(() => {
     const search = JSON.parse(localStorage.getItem('search'));
@@ -146,58 +147,28 @@ const Movies = ({ loggedIn }) => {
     setMoviesDisplayed([...moviesDisplayed, ...moviesToShow]);
   }
 
-  // const handleSearchSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { request, short } = e.target.elements;
-  //   console.log(request.value, short.checked);
-
-  //   const currentSearch = { querry: request.value, includeShorts: short.checked };
-
-  //   localStorage.setItem('search', JSON.stringify(currentSearch));
-  //   setParameters(currentSearch);
-  //   setIsNotFound(false);
-  // }
-
-  // const handleSearchSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { request, short } = e.target.elements;
-
-  //   const currentSearch = {
-  //     querry: request.value,
-  //     includeShorts: short.checked,
-  //   };
-
-  //   localStorage.setItem('search', JSON.stringify(currentSearch));
-  //   localStorage.setItem('prevSearchResults', JSON.stringify(serachedMovies));
-
-  //   setParameters(currentSearch);
-  //   setPrevSearchResults(serachedMovies);
-  //   setIsNotFound(false);
-  // }
-
   useEffect(() => {
-    if (!parameters.querry) return;
+    if (!parameters.querry) {
+      setSearchedMovies([]); // Обнуляем предыдущие результаты
+      setIsNotFound(false); // Сбрасываем состояние "ничего не найдено"
+      return;
+    }
 
     // Фильтрация с использованием нового состояния чекбокса
-    const currentSearchedMovies = allMovies.filter(movie => movieFilter(movie, { querry: parameters.querry, includeShorts: includeShorts }));
+    const currentSearchedMovies = allMovies.filter(movie =>
+      movieFilter(movie, { querry: parameters.querry, includeShorts: includeShorts })
+    );
 
     if (currentSearchedMovies.length === 0) {
       setIsNotFound(true);
     } else {
       setIsNotFound(false);
-      setSearchedMovies(currentSearchedMovies);
     }
 
+    setSearchedMovies(currentSearchedMovies);
+
     localStorage.setItem('prevSearchResults', JSON.stringify(currentSearchedMovies));
-
   }, [parameters, includeShorts, allMovies])
-
-  // const handleShortsCheck = () => {
-  //   const newIncludeShorts = !includeShorts;
-  //   setIncludeShorts(newIncludeShorts);
-  //   localStorage.setItem('includeShorts', JSON.stringify(newIncludeShorts)); // Сохранение в localStorage
-  // }
-
 
   return (
     <div>

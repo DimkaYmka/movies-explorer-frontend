@@ -4,7 +4,6 @@ import Footer from '../Footer/Footer.js'
 import MovieSectionList from '../MovieSectionList/MovieSectionList.js';
 import { useEffect, useState } from 'react';
 import api from '../../utils/MainApi';
-// import  movieFilter  from '../../utils/utils';
 
 const checkMovieDuration = (movieDuration, isShortsIncluded, shortsDurationCriteria = 40) => {
   return (isShortsIncluded && (movieDuration <= shortsDurationCriteria)) || (!isShortsIncluded && (movieDuration > shortsDurationCriteria));
@@ -21,7 +20,6 @@ export const movieFilter = (movie, { querry, includeShorts }) => {
 }
 
 function SavedMovies({ loggedIn }) {
-  // const [prevSearchResults, setPrevSearchResults] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [searchedSavedMovies, setSearchedSavedMovies] = useState([]);
   const [parameters, setParameters] = useState({ querry: '', includeShorts: false });
@@ -32,7 +30,6 @@ function SavedMovies({ loggedIn }) {
     setIsLoading(true);
     api.getSavedMovies()
       .then(res => {
-        console.log(res);
         setSavedMovies(res);
       })
       .catch(err => {
@@ -41,26 +38,24 @@ function SavedMovies({ loggedIn }) {
       .finally(() => {
         setIsLoading(false);
       })
-  }, [setSavedMovies])
-
-
+  }, [])
 
   const handleSearchSubmit = (searchValue, includeShorts) => {
     const currentSearch = { querry: searchValue, includeShorts: includeShorts };
     setParameters(currentSearch);
     setIsNotFound(false);
+    setSearchedSavedMovies([]); // Обнуляем предыдущие результаты
   }
 
   useEffect(() => {
-    const currentSearchedMovies = savedMovies.filter(movie => movieFilter(movie, parameters)); // Используйте параметры
+    const currentSearchedMovies = savedMovies.filter(movie => movieFilter(movie, parameters));
     if (currentSearchedMovies.length === 0) {
       setIsNotFound(true);
     } else {
       setIsNotFound(false);
-      setSearchedSavedMovies(currentSearchedMovies);
     }
+    setSearchedSavedMovies(currentSearchedMovies);
   }, [parameters, savedMovies])
-
 
   return (
     <div className="saved-movies">
@@ -78,6 +73,7 @@ function SavedMovies({ loggedIn }) {
 }
 
 export default SavedMovies;
+
 
 
 
