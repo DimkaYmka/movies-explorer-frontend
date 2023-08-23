@@ -124,6 +124,7 @@ function App() {
     localStorage.removeItem('movies');
     localStorage.removeItem('search');
     localStorage.removeItem('prevSearchResults')
+    localStorage.removeItem('includeShorts')
     navigation('/');
   };
 
