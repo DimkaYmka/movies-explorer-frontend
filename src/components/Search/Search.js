@@ -26,7 +26,7 @@ function Search({ parameters, setParameters, includeShorts, handleShortsCheck, o
               onChange={handleChange}
               value={searchValue}
               className="search__input" required />
-            <button className="search__button" type='button' onClick={() => onSearchSubmit(searchValue, includeShorts)}> {/* Используйте новое имя пропса */}
+            <button className="search__button" type='button' onClick={() => onSearchSubmit(searchValue, includeShorts)}>
               Поиск
             </button>
           </fieldset>

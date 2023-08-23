@@ -178,9 +178,9 @@ const Movies = ({ loggedIn }) => {
         <Search
           parameters={parameters}
           setParameters={setParameters}
-          includeShorts={includeShorts}
+          includeShorts={getIncludeShortsFromLocalStorage()} // Передайте значение из localStorage
           handleShortsCheck={handleShortsCheck}
-          onSearchSubmit={handleSearchSubmit} // Передача функции обработки чекбокса в Search
+          onSearchSubmit={handleSearchSubmit}
         />
         <MovieSectionList
           isLoading={isLoading}

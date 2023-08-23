@@ -22,9 +22,19 @@ export const movieFilter = (movie, { querry, includeShorts }) => {
 function SavedMovies({ loggedIn }) {
   const [savedMovies, setSavedMovies] = useState([]);
   const [searchedSavedMovies, setSearchedSavedMovies] = useState([]);
-  const [parameters, setParameters] = useState({ querry: '', includeShorts: false });
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
+
+  const [includeShorts, setIncludeShorts] = useState(false);
+  const [parameters, setParameters] = useState({ querry: '', includeShorts: false });
+
+  const handleShortsCheck = () => {
+    setIncludeShorts(prevIncludeShorts => !prevIncludeShorts);
+    setParameters(prevParameters => ({
+      ...prevParameters,
+      includeShorts: !prevParameters.includeShorts
+    }));
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -38,14 +48,17 @@ function SavedMovies({ loggedIn }) {
       .finally(() => {
         setIsLoading(false);
       })
-  }, [])
+    }, [parameters]);
 
   const handleSearchSubmit = (searchValue, includeShorts) => {
-    const currentSearch = { querry: searchValue, includeShorts: includeShorts };
+    const currentSearch = { querry: searchValue, includeShorts: includeShorts, };
     setParameters(currentSearch);
     setIsNotFound(false);
     setSearchedSavedMovies([]); // Обнуляем предыдущие результаты
+
   }
+
+
 
   useEffect(() => {
     const currentSearchedMovies = savedMovies.filter(movie => movieFilter(movie, parameters));
@@ -60,13 +73,17 @@ function SavedMovies({ loggedIn }) {
   return (
     <div className="saved-movies">
       <Header loggedIn={loggedIn} theme={{ default: false }} />
-      <Search parameters={parameters}
-         onSearchSubmit={handleSearchSubmit}
-        setParameters={setParameters} />
+      <Search
+        parameters={parameters}
+        setParameters={setParameters}
+        includeShorts={includeShorts} // Передаем локальное состояние
+        handleShortsCheck={handleShortsCheck} // Передаем локальный обработчик
+        onSearchSubmit={handleSearchSubmit}
+      />
       <MovieSectionList
         moviesData={searchedSavedMovies}
         isLoading={isLoading}
-        isNotFound={isNotFound}  />
+        isNotFound={isNotFound} />
       <Footer />
     </div>
   )
