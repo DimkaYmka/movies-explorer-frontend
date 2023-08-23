@@ -32,20 +32,17 @@ function App() {
     const jwt = localStorage.getItem('token');
 
     if (jwt) {
-      api
-        .getContent(jwt)
+      api.getContent(jwt)
         .then((res) => {
           if (res) {
             localStorage.removeItem('allMovies');
             setloggedIn(true);
           }
-          navigation(path);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-
   }, []);
 
 
