@@ -50,6 +50,8 @@ const Movies = ({ loggedIn }) => {
 
   const [moviesDisplayed, setMoviesDisplayed] = useState([]);
   const [amountOfCards, setAmountOfCards] = useState(getAmountOfCards());
+  const [visibleMoviesCount, setVisibleMoviesCount] = useState(amountOfCards.totalCards);
+
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const { setSavedMovies } = useSavedMoviesContext();
   const [parameters, setParameters] = useState({
@@ -137,14 +139,20 @@ const Movies = ({ loggedIn }) => {
     }
   }, [amountOfCards, serachedMovies, allMovies]);
 
+  useEffect(() => {
+    // Обновляем список видимых фильмов при изменении visibleMoviesCount
+    setMoviesDisplayed(allMovies.slice(0, visibleMoviesCount));
+  }, [visibleMoviesCount, allMovies]);
+
 
   useEffect(() => {
     setIsButtonVisible(moviesDisplayed.length < serachedMovies.length);
   }, [moviesDisplayed, serachedMovies])
 
   const handleMoreMovies = () => {
-    const moviesToShow = allMovies.slice(moviesDisplayed.length, moviesDisplayed.length + amountOfCards.extraCards);
-    setMoviesDisplayed([...moviesDisplayed, ...moviesToShow]);
+    // const moviesToShow = allMovies.slice(moviesDisplayed.length, moviesDisplayed.length + amountOfCards.extraCards);
+    // setMoviesDisplayed([...moviesDisplayed, ...moviesToShow]);
+    setVisibleMoviesCount((prevCount) => prevCount + amountOfCards.extraCards);
   }
 
   useEffect(() => {
