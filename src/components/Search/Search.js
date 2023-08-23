@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import SearchShort from './searchShort/SearchShort';
 
-
-
-
 function Search({ parameters, setParameters, includeShorts, handleShortsCheck, onSearchSubmit }) {
   const [searchValue, setSearchValue] = useState(parameters.querry);
 
@@ -15,18 +12,31 @@ function Search({ parameters, setParameters, includeShorts, handleShortsCheck, o
     setSearchValue(parameters.querry);
   }, [parameters])
 
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Отменить действие по умолчанию (попытку отправить форму)
+    if (event.target.checkValidity()) {
+      onSearchSubmit(searchValue, includeShorts);
+    }
+  }
+
   return (
     <section className="movies">
       <section className="search__section">
-        <form className="search">
+        <form className="search" onSubmit={handleSubmit}>
           <fieldset className="search__fieldset">
-            <input type="text"
+            <input
+              type="text"
               name="request"
               placeholder="Фильм"
               onChange={handleChange}
               value={searchValue}
-              className="search__input" required />
-            <button className="search__button" type='button' onClick={() => onSearchSubmit(searchValue, includeShorts)}>
+              className="search__input"
+              required
+            />
+            <button
+              className="search__button"
+              type="submit" // Тип изменен на submit
+            >
               Поиск
             </button>
           </fieldset>
@@ -41,4 +51,3 @@ function Search({ parameters, setParameters, includeShorts, handleShortsCheck, o
 }
 
 export default Search;
-
