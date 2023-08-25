@@ -1,11 +1,9 @@
-import { useContext, useState } from 'react';
-import { CurrentUserContext } from '../../context/CurrentUserContext.js';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation.js';
 
-function Header({ theme }) {
-  const { loggedIn } = useContext(CurrentUserContext);
+function Header({ theme, loggedIn }) {
   const [openNavPanel, setOpenNavPanel] = useState(false);
 
   function handleOpenNavPanel() {

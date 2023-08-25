@@ -1,62 +1,29 @@
-import { Link } from 'react-router-dom';
+import {Link} from "react-router-dom";
+import logo from '../../images/logo.svg'
 
-
-function Auth({ authSetting }) {
-  return (
-
-
-    <main className="auth">
- <Link to="/" className="auth__logo" />
-      <h2
-        className="auth__title">
-        {authSetting.title}
-      </h2>
-      <form className="auth__form">
-        <div className="auth__input">
-          <label className="auth__input-label">
-            Имя
-          </label>
-          <input className="auth__input-row" type="email"
-            required />
+function Auth ({ children,  title, buttonText, question,  linkText, link, onSubmit, isDisabled, isLoading})  {
+    return(
+        <div className={'auth'}>
+          <div className="auth__forma">
+            <Link to={'/'} className='auth__logo'>
+                <img src={logo} alt={'Логотип проекта'}/>
+            </Link>
+            <h3 className='auth__title'>{title}</h3>
+            <form className='auth__form'  onSubmit={onSubmit} noValidate>
+                {children}
+                <button className="auth__submit-button"  type="submit" disabled={isDisabled ? true : false}>
+                    {buttonText}
+                </button>
+            </form>
+            <p className="auth__text">
+                {question}
+                <Link to={link} className='auth__link'>
+                    {linkText}
+                </Link>
+            </p>
+            </div>
         </div>
-
-        <div className="auth__input">
-          <label className="auth__input-label">
-            E-mail
-          </label>
-          <input className="auth__input-row" type="password"
-            required />
-        </div>
-
-        {authSetting.type === 'register'
-          &&
-          <div
-            className="auth__input">
-            <label className="auth__input-label">
-              Пароль
-            </label>
-            <input className="auth__input-row" type="text"
-              required />
-          </div>
-        }
-      </form>
-
-      <div className="auth__submit">
-        <button className="auth__submit-button" type="submit">
-          {authSetting.buttonSubmit}
-        </button>
-        <div className="auth__container">
-          <p className="auth__text">
-            {authSetting.Text}
-          </p>
-          <Link to={authSetting.Path}
-            className="auth__link">
-            {authSetting.Link}
-          </Link>
-        </div>
-      </div>
-    </main>
-  )
+    )
 }
 
 export default Auth;

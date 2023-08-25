@@ -6,10 +6,9 @@ import Portfolio from "./Portfolio/Portfolio.js"
 import Footer from "../Footer/Footer.js";
 import Header from "../Header/Header.js";
 
-function Main() {
+function Main({loggedIn}) {
   return (
     <div>
-      <Header theme={{ default: false }}/>
       <main>
       <Promo />
       <AboutProject/>

@@ -1,32 +1,43 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
-
+import useValidation from '../../hooks/useValidationHook';
 import Header from '../Header/Header.js'
-function Profile() {
 
-  const { name, email } = useContext(CurrentUserContext);
+
+function Profile({ logOut, onUpdateInfo, loggedIn, isLoading }) {
+  const currentUser = useContext(CurrentUserContext);
+  const { values, errors, handleChange, isValid, resetForm } = useValidation();
+  const [isLastEnter, setIsLastEnter] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
+    onUpdateInfo({
+        name: values.name,
+        email: values.email,
+    });
+}
 
-    console.log('done');
+useEffect(() => {
+  if (currentUser) {
+      resetForm(currentUser);
   }
+}, [currentUser, resetForm]);
 
-  function handleEdit() {
-    console.log('done');
+useEffect(() => {
+  if (currentUser.name === values.name && currentUser.email === values.email) {
+    setIsLastEnter(true);
+  } else {
+    setIsLastEnter(false);
   }
-
-  function handleLogout() {
-    console.log('done');
-  }
+}, [values]);
 
   return (
     <div className="">
-      <Header theme={{ default: false }} />
+      <Header loggedIn={loggedIn} theme={{ default: false }} />
       <main className="profile">
         <h2 className="profile__title">
-          {`Привет, ${name}!`}
+          {`Привет, ${currentUser.name}!`}
         </h2>
 
         <form name="profile__form"
@@ -41,13 +52,13 @@ function Profile() {
               type="text"
               className="profile__input"
               placeholder="Имя"
-              value={name || ''}
-              onChange={handleEdit}
+              value={values.name || ''}
+              onChange={handleChange}
               minLength={2}
               maxLength={30}
               required={true} />
           </label>
-
+          <span className="auth-form__span-error">{errors.name}</span>
           <label className="profile__input-container">
             <span className="profile__input-label">
               E-mail
@@ -56,30 +67,36 @@ function Profile() {
               required
               type="email"
               name="email"
+              pattern="^[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}$"
               className="profile__input"
               placeholder="почтa"
-              value={email || ''}
-              onChange={handleEdit}
+              value={values.email || ''}
+              onChange={handleChange}
             />
           </label>
 
-        </form>
 
+          <span className="auth-form__span-error">{errors.email}</span>
         <div className="profile__edit">
           <button
-            type="submit"
+          onClick={handleSubmit}
+            type="button"
             form="profile__form"
-            onClick={handleEdit}
-            className="profile__button-edit">
+            disabled={!isValid  || isLastEnter || isLoading}
+            className={!isValid  || isLastEnter || isLoading
+              ?'profile__button-edit profile__button-edit_inactive'
+              :'profile__button-edit' }>
             Редактировать
           </button>
           <button
             className="profile__button-logout"
-            onClick={handleLogout}>
+            type="button"
+
+            onClick={logOut}>
             Выйти из аккаунта
           </button>
         </div>
-
+        </form>
       </main>
     </div>
   )

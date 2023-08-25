@@ -1,6 +1,6 @@
 .project {
   max-width: 1140px;
-  margin: 0;
+  margin: 0 auto;
   background-color: #202020;
   padding: 110px 150px 106px;
 }
@@ -12,7 +12,6 @@
 }
 
 .project__title {
-  /* width: 550px; */
   color: #fff;
   font-family: 'Inter', 'Arial', sans-serif;
   font-size: 20px;
@@ -28,7 +27,7 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px; /* 142.857% */
+  line-height: 20px;
   margin: 0;
   padding-top: 10px;
   padding-bottom: 95px;
@@ -75,7 +74,7 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 17px; /* 121.429% */
+  line-height: 17px;
 }
 
 .project__back-text {
@@ -93,6 +92,10 @@
   margin: 0;
   font-size: 14px;
 }
+@media screen and (max-width: 1200px) {
+  .project {
+    padding: 110px 15px 106px;
+  }}
 
 @media screen and (max-width: 768px) {
   .project {
@@ -125,7 +128,7 @@
 @media screen and (max-width: 500px) {
   .project {
     padding: 69px 18px 106px;
-    max-width: 285px;
+    max-width: 500px;
   }
   .project__title {
     font-size: 18px;
@@ -185,4 +188,11 @@
     line-height: normal;
     width: 420px;
   }
+}
+
+@media screen and (max-width: 320px) {
+.project {
+  padding: 69px 18px 106px;
+  max-width: 285px;
+}
 }

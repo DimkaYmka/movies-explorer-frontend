@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 function Navigation({ isOpenNavPanel }) {
   return (
     <div className={`navigation ${isOpenNavPanel ? 'navigation_active' : ''}`}>
-      {/* <Link to='/' className='navigation__link navigation__link-home'>
-        Главная
-      </Link> */}
       <ul className='navigation__list'>
         <li className='navigation__item'>
           <Link to='/' className='navigation__link navigation__link-home'>
@@ -22,11 +19,6 @@ function Navigation({ isOpenNavPanel }) {
             Сохраненные фильмы
           </Link>
         </li>
-        {/* <li className='navigation__item navigation__profile' >
-          <Link to="/profile" className="navigation__link">
-            Аккаунт
-          </Link>
-        </li> */}
       </ul>
       <Link to="/profile" className="navigation__item navigation__profile navigation__link">
             Аккаунт

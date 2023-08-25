@@ -1,5 +1,5 @@
 import Title from "../Title/Title";
-import Student from "../../../images/student.jpg"
+import Student from "../../../images/me.jpg"
 
 function AboutMe() {
   return (
@@ -7,11 +7,10 @@ function AboutMe() {
       <Title title="Студент" />
       <article className="student">
         <div className="student__container">
-          <h2 className="student__title">Виталий</h2>
-          <p className="student__heading">Фронтенд-разработчик, 30 лет</p>
+          <h2 className="student__title">Дмитрий</h2>
+          <p className="student__heading">Фронтенд-разработчик, 23 года</p>
 
-          <p className="student__paragraph">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена
-            и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
+          <p className="student__paragraph">Живу и учусь в Москве. Окончил бакалавр на Менеджера и постпил в Магистратуры на веб-разработчика. Люблю ходить в походы, сноуборд и вкусно поесть. В свободное время учу новые фичи и играю в видеоигры.</p>
           <a href="https://github.com/DimkaYmka" className="student__link" target="_blank">Github</a>
         </div>
         <div className="student__image-container">

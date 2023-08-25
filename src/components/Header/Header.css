@@ -1,11 +1,9 @@
 .header {
-  /* margin: 0 auto; */
   padding: 18px calc((100% - 1140px) / 2);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 0;
-  /* max-width: 1280px; */
   background-color: #202020;
 }
 
@@ -69,6 +67,10 @@
 }
 
 @media screen and (max-width: 768px) {
+.header {
+
+}
+
   .header__logo {
     margin: 0;
   }
@@ -107,7 +109,6 @@
     position: absolute;
     top: -11px;
     right: -5px;
-    /* background-color: #fff; */
     transition: transform 0.2s ease;
     cursor: pointer;
     background-image: url("../../images/icon__NavPanel.svg");
@@ -131,6 +132,11 @@
 @media screen and (max-width: 320px) {
   .header {
     padding: 18px 14px;
+  }
+
+  .header__logo {
+    width: 33px;
+    height: 33px;
   }
 
   .header__signin {
@@ -166,5 +172,7 @@
 
   .header__navpanel-inner {
     top: -8px;
+    height: 37px;
+    width: 37px;
   }
 }

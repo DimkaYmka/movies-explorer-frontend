@@ -1,17 +1,27 @@
 import MovieSection from '../MovieSection/MovieSection.js'
+import { useLocation } from 'react-router-dom';
+import Preloader from "../Preloader/Preloader";
+import SearchError from '../SearchErr/SearchErr.js';
 
+function MoviesCardList({ moviesData, isLoading, isNotFound }) {
 
-function MoviesCardList  ({ moviesData }) {
+  const { pathname } = useLocation();
+
   return (
-    <main className="movie-section">
+    <main className="movie-section" >
+      {isLoading && <Preloader />}
+      {isNotFound && !isLoading && <SearchError errorText={'Ничего не найдено'} />}
       <ul className="movie-section__list">
         {
-          moviesData.map(({ _id, ...movie}) => (
-            <MovieSection key={_id} movieData={movie} />
+          moviesData.map((movie) => (
+            <MovieSection key={
+              pathname === "/movies"
+                ? movie.id
+                : movie._id
+            } movieData={movie} />
           ))
         }
       </ul>
-      <button className="movie-section__more-button"> Ещё </button>
     </main>
   )
 };

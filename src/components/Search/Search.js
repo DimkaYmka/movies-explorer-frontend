@@ -1,28 +1,53 @@
-function Search() {
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import SearchShort from './searchShort/SearchShort';
+
+
+function Search({ parameters, setParameters, handleSearchSubmit }) {
+  const [searchValue, setSearchValue] = useState(parameters.querry);
+  const [isShortChecked, setShortChecked] = useState(parameters.includeShorts);
+  const [prevSearchResults, setPrevSearchResults] = useState([]);
+
+  const {pathname} = useLocation();
+
+  const handleChange = ({ target }) => {
+    setSearchValue(target.value);
+  }
+  useEffect(() => {
+    setSearchValue(parameters.querry);
+    setShortChecked(parameters.includeShorts);
+    //======================localStorage on page movies===============================
+    if (pathname === '/movies' && parameters.querry !== '') {
+        localStorage.setItem('search', JSON.stringify(parameters));
+        console.log(localStorage.getItem('search'));
+    }
+  }, [parameters])
+
+
+  const handleShortsCheck = () => {
+    setShortChecked(!isShortChecked);
+    setParameters({ ...parameters, includeShorts: !parameters.includeShorts });
+  }
+
   return (
     <section className="movies">
-      <section className="movies__section">
-        <form className="search">
+      <section className="search__section">
+        <form className="search" onSubmit={handleSearchSubmit}>
           <fieldset className="search__fieldset">
-            <input type="text" placeholder="Фильм"
-              className="search__input" required/>
-            <button className="search__button">
+            <input type="text"
+              name="request"
+              placeholder="Фильм"
+              onChange={handleChange}
+              value={searchValue}
+              className="search__input" required />
+            <button className="search__button" type='submit'>
               Поиск
             </button>
           </fieldset>
-          <label className="search__checkbox">
-
-            <input
-              type="checkbox" name="search-short-toggle" id="search-short-toggle"
-              className="search__label"/>
-            <label
-              className="search__checkbox-label"
-              htmlFor="search-short-toggle" />
-            <p className="search__text">
-              Короткометражки
-            </p>
-          </label>
-
+          <SearchShort
+            checkHandler={handleShortsCheck}
+            isChecked={isShortChecked}
+          />
         </form>
       </section>
     </section>
