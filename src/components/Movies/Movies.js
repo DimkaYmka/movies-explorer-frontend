@@ -24,7 +24,7 @@ const filterMovieByQuerry = (movie, searchQuerry) => {
 
 export const movieFilter = (movie, { querry, includeShorts }) => {
   return (includeShorts && (movie.duration <= 40) && filterMovieByQuerry(movie, querry)) ||
-    (!includeShorts && filterMovieByQuerry(movie, querry));
+         (!includeShorts && filterMovieByQuerry(movie, querry));
 }
 
 const getAmountOfCards = () => {
@@ -37,11 +37,6 @@ const getAmountOfCards = () => {
   return { totalCards: 12, extraCards: 3 };
 }
 
-const getIncludeShortsFromLocalStorage = () => {
-  const includeShorts = JSON.parse(localStorage.getItem('includeShorts'));
-  return includeShorts !== null ? includeShorts : false;
-};
-
 const Movies = ({ loggedIn }) => {
 
   const [allMovies, setAllMovies] = useState([]);
@@ -50,39 +45,13 @@ const Movies = ({ loggedIn }) => {
 
   const [moviesDisplayed, setMoviesDisplayed] = useState([]);
   const [amountOfCards, setAmountOfCards] = useState(getAmountOfCards());
-  const [visibleMoviesCount, setVisibleMoviesCount] = useState(amountOfCards.totalCards);
-
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const { setSavedMovies } = useSavedMoviesContext();
-  const [parameters, setParameters] = useState({
-    querry: '',
-    includeShorts: getIncludeShortsFromLocalStorage(), // Используем значение из localStorage
-  });
+  const [parameters, setParameters] = useState({ querry: '', includeShorts: false });
   const [serachedMovies, setSearchedMovies] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
-
-  const [includeShorts, setIncludeShorts] = useState(getIncludeShortsFromLocalStorage());
-
-  const handleShortsCheck = () => {
-    const newIncludeShorts = !includeShorts;
-    setIncludeShorts(newIncludeShorts);
-    localStorage.setItem('includeShorts', JSON.stringify(newIncludeShorts));
-  }
-
-  const handleSearchSubmit = (searchValue, includeShorts) => {
-    const currentSearch = {
-      querry: searchValue,
-      includeShorts: includeShorts,
-    };
-
-    localStorage.setItem('search', JSON.stringify(currentSearch));
-    setParameters(currentSearch);
-    setSearchedMovies([]); // Обнуляем предыдущие результаты
-    setIsNotFound(false); // Сбрасываем состояние "ничего не найдено"
-  }
-
 
   useEffect(() => {
     const search = JSON.parse(localStorage.getItem('search'));
@@ -101,9 +70,9 @@ const Movies = ({ loggedIn }) => {
       .catch(err => {
         console.log(err);
       })
-      .finally(() => {
-        setIsLoading(false);
-      })
+    .finally(() => {
+      setIsLoading(false);
+    })
   }, [setSavedMovies])
 
   useEffect(() => {
@@ -133,16 +102,11 @@ const Movies = ({ loggedIn }) => {
     if (localStorage.getItem('search')) {
       setMoviesDisplayed(serachedMovies.slice(0, amountOfCards.totalCards));
 
-    } else {
+    }  else {
       setMoviesDisplayed(allMovies.slice(0, amountOfCards.totalCards));
 
     }
-  }, [amountOfCards, serachedMovies, allMovies]);
-
-  useEffect(() => {
-    // Обновляем список видимых фильмов при изменении visibleMoviesCount
-    setMoviesDisplayed(allMovies.slice(0, visibleMoviesCount));
-  }, [visibleMoviesCount, allMovies]);
+  }, [ amountOfCards, serachedMovies, allMovies]);
 
 
   useEffect(() => {
@@ -150,61 +114,78 @@ const Movies = ({ loggedIn }) => {
   }, [moviesDisplayed, serachedMovies])
 
   const handleMoreMovies = () => {
-    // const moviesToShow = allMovies.slice(moviesDisplayed.length, moviesDisplayed.length + amountOfCards.extraCards);
-    // setMoviesDisplayed([...moviesDisplayed, ...moviesToShow]);
-    setVisibleMoviesCount((prevCount) => prevCount + amountOfCards.extraCards);
+    const moviesToShow = allMovies.slice(moviesDisplayed.length, moviesDisplayed.length + amountOfCards.extraCards);
+    setMoviesDisplayed([...moviesDisplayed, ...moviesToShow]);
+  }
+
+  // const handleSearchSubmit = (e) => {
+  //   e.preventDefault();
+  //   const { request, short } = e.target.elements;
+  //   console.log(request.value, short.checked);
+
+  //   const currentSearch = { querry: request.value, includeShorts: short.checked };
+
+  //   localStorage.setItem('search', JSON.stringify(currentSearch));
+  //   setParameters(currentSearch);
+  //   setIsNotFound(false);
+  // }
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const { request, short } = e.target.elements;
+
+    const currentSearch = {
+      querry: request.value,
+      includeShorts: short.checked,
+    };
+
+    localStorage.setItem('search', JSON.stringify(currentSearch));
+    localStorage.setItem('prevSearchResults', JSON.stringify(serachedMovies));
+
+    setParameters(currentSearch);
+    setPrevSearchResults(serachedMovies);
+    setIsNotFound(false);
   }
 
   useEffect(() => {
-    if (!parameters.querry) {
-      setSearchedMovies([]); // Обнуляем предыдущие результаты
-      setIsNotFound(false); // Сбрасываем состояние "ничего не найдено"
-      return;
-    }
-
-    // Фильтрация с использованием нового состояния чекбокса
-    const currentSearchedMovies = allMovies.filter(movie =>
-      movieFilter(movie, { querry: parameters.querry, includeShorts: includeShorts })
-    );
-
+    if (!parameters.querry) return;
+    const currentSearchedMovies = allMovies.filter(movie => movieFilter(movie, parameters));
     if (currentSearchedMovies.length === 0) {
-      setIsNotFound(true);
+        setIsNotFound(true);
     } else {
-      setIsNotFound(false);
+        setIsNotFound(false);
+        setSearchedMovies(currentSearchedMovies);
     }
+      console.log('currentSearchedMovies: ', currentSearchedMovies);
+      setSearchedMovies(currentSearchedMovies);
 
-    setSearchedMovies(currentSearchedMovies);
-
-    localStorage.setItem('prevSearchResults', JSON.stringify(currentSearchedMovies));
-  }, [parameters, includeShorts, allMovies])
+  }, [parameters, allMovies])
 
   return (
     <div>
       <Header loggedIn={loggedIn} theme={{ default: false }} />
-      <main className="movies container">
+    <main className="movies container">
 
-        <Search
-          parameters={parameters}
-          setParameters={setParameters}
-          includeShorts={getIncludeShortsFromLocalStorage()} // Передайте значение из localStorage
-          handleShortsCheck={handleShortsCheck}
-          onSearchSubmit={handleSearchSubmit}
-        />
-        <MovieSectionList
-          isLoading={isLoading}
-          moviesData={moviesDisplayed}
-          isNotFound={isNotFound} />
-        {isButtonVisible
-          ?
-          <button className="movie-section__more-button"
-            type="button" onClick={handleMoreMovies}>
-            Ещё
-          </button>
-          : null
-        }
+      <Search
+        parameters={parameters}
+        handleSearchSubmit={handleSearchSubmit}
+        setParameters={setParameters}
+      />
+      <MovieSectionList
+        isLoading={isLoading}
+        moviesData={moviesDisplayed}
+        isNotFound={isNotFound} />
+      {isButtonVisible
+        ?
+        <button className="movie-section__more-button"
+          type="button" onClick={handleMoreMovies}>
+          Ещё
+        </button>
+        : null
+      }
 
-      </main>
-      <Footer />
+    </main>
+    <Footer />
     </div>
   )
 };

@@ -10,7 +10,7 @@ function AboutMe() {
           <h2 className="student__title">Дмитрий</h2>
           <p className="student__heading">Фронтенд-разработчик, 23 года</p>
 
-          <p className="student__paragraph">Живу и учусь в Москве. Окончил бакалавр на Менеджера и постпил в Магистратуры на веб-разработчика. Люблю ходить в походы, сноуборд и вкусно поесть. В свободное время стараюсь учиться.</p>
+          <p className="student__paragraph">Живу и учусь в Москве. Окончил бакалавр на Менеджера и постпил в Магистратуры на веб-разработчика. Люблю ходить в походы, сноуборд и вкусно поесть. В свободное время учу новые фичи и играю в видеоигры.</p>
           <a href="https://github.com/DimkaYmka" className="student__link" target="_blank">Github</a>
         </div>
         <div className="student__image-container">

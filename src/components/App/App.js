@@ -32,17 +32,20 @@ function App() {
     const jwt = localStorage.getItem('token');
 
     if (jwt) {
-      api.getContent(jwt)
+      api
+        .getContent(jwt)
         .then((res) => {
           if (res) {
             localStorage.removeItem('allMovies');
             setloggedIn(true);
           }
+          navigation(path);
         })
         .catch((err) => {
           console.log(err);
         });
     }
+
   }, []);
 
 
@@ -121,7 +124,6 @@ function App() {
     localStorage.removeItem('movies');
     localStorage.removeItem('search');
     localStorage.removeItem('prevSearchResults')
-    localStorage.removeItem('includeShorts')
     navigation('/');
   };
 

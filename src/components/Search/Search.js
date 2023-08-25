@@ -1,48 +1,52 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import SearchShort from './searchShort/SearchShort';
 
-function Search({ parameters, setParameters, includeShorts, handleShortsCheck, onSearchSubmit }) {
+
+function Search({ parameters, setParameters, handleSearchSubmit }) {
   const [searchValue, setSearchValue] = useState(parameters.querry);
+  const [isShortChecked, setShortChecked] = useState(parameters.includeShorts);
+  const [prevSearchResults, setPrevSearchResults] = useState([]);
+
+  const {pathname} = useLocation();
 
   const handleChange = ({ target }) => {
     setSearchValue(target.value);
   }
-
   useEffect(() => {
     setSearchValue(parameters.querry);
+    setShortChecked(parameters.includeShorts);
+    //======================localStorage on page movies===============================
+    if (pathname === '/movies' && parameters.querry !== '') {
+        localStorage.setItem('search', JSON.stringify(parameters));
+        console.log(localStorage.getItem('search'));
+    }
   }, [parameters])
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Отменить действие по умолчанию (попытку отправить форму)
-    if (event.target.checkValidity()) {
-      onSearchSubmit(searchValue, includeShorts);
-    }
+
+  const handleShortsCheck = () => {
+    setShortChecked(!isShortChecked);
+    setParameters({ ...parameters, includeShorts: !parameters.includeShorts });
   }
 
   return (
     <section className="movies">
       <section className="search__section">
-        <form className="search" onSubmit={handleSubmit}>
+        <form className="search" onSubmit={handleSearchSubmit}>
           <fieldset className="search__fieldset">
-            <input
-              type="text"
+            <input type="text"
               name="request"
               placeholder="Фильм"
               onChange={handleChange}
               value={searchValue}
-              className="search__input"
-              required
-            />
-            <button
-              className="search__button"
-              type="submit" // Тип изменен на submit
-            >
+              className="search__input" required />
+            <button className="search__button" type='submit'>
               Поиск
             </button>
           </fieldset>
           <SearchShort
             checkHandler={handleShortsCheck}
-            isChecked={includeShorts}
+            isChecked={isShortChecked}
           />
         </form>
       </section>
@@ -50,4 +54,4 @@ function Search({ parameters, setParameters, includeShorts, handleShortsCheck, o
   )
 }
 
-export default Search;
+export default Search

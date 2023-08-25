@@ -19,7 +19,6 @@ function MoviesCardList({ moviesData, isLoading, isNotFound }) {
                 ? movie.id
                 : movie._id
             } movieData={movie} />
-            // <MovieSection key={movie._id} movieData={movie} />
           ))
         }
       </ul>
